@@ -113,9 +113,14 @@ export function WebcamFeed({ onDetections, enabled = true }: WebcamFeedProps) {
       )}
 
       {enabled && !loading && (
-        <div className="absolute top-4 left-4 bg-black/70 text-white px-3 py-2 rounded text-sm font-mono">
+        <div className="absolute top-4 left-4 bg-black/70 text-white px-3 py-2 rounded text-sm font-mono z-50">
           <div>FPS: {fps}</div>
-          <div>Detections: {detections.length}</div>
+          <div className="mb-2 font-bold">Detections: {detections.length}</div>
+          {detections.map((d, i) => (
+            <div key={i} className="text-green-400 whitespace-nowrap">
+              {d.class} ({(d.score * 100).toFixed(0)}%)
+            </div>
+          ))}
         </div>
       )}
     </div>

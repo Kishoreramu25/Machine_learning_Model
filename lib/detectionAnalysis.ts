@@ -14,11 +14,8 @@ const COLOR_MAP: Record<string, string> = {
 }
 
 export function filterWeaponDetections(detections: Detection[]): Detection[] {
-  return detections.filter(
-    (detection) =>
-      WEAPON_CLASSES.includes(detection.class.toLowerCase()) &&
-      detection.score > 0.5
-  )
+  // Allow all classes from custom model with high confidence
+  return detections.filter((detection) => detection.score > 0.6)
 }
 
 export function drawDetections(
